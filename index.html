@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TráfegoPro - Domine o Tráfego Pago</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #74f276;
+            --dark-bg: #0a0a0a;
+            --card-bg: #161616;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --danger: #ff4d4d;
+            --border: #2a2a2a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body { background-color: var(--dark-bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+        /* Header */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: rgba(10, 10, 10, 0.9);
+            position: fixed; top: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .logo { color: #2e7d32; font-weight: 800; font-size: 22px; }
+        .btn-buy-top { 
+            background: var(--primary-green); color: #000; padding: 10px 20px; 
+            border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px;
+        }
+
+        /* Hero Section */
+        .hero { 
+            padding: 120px 20px 60px; text-align: center;
+            background: radial-gradient(circle at center, rgba(116, 242, 118, 0.1) 0%, transparent 70%);
+        }
+        h1 { font-size: 32px; margin-bottom: 20px; font-weight: 800; color: var(--text-main); }
+        .hero p { color: var(--text-secondary); margin-bottom: 30px; font-size: 18px; }
+
+        /* Buttons */
+        .btn-main {
+            background: var(--primary-green); color: #000; padding: 18px 30px;
+            border-radius: 50px; text-decoration: none; border: none; font-weight: bold;
+            display: inline-block; width: 100%; max-width: 350px; font-size: 18px;
+            box-shadow: 0 4px 15px rgba(116, 242, 118, 0.3); transition: 0.3s; cursor: pointer;
+        }
+
+        /* Container & Cards */
+        .container { padding: 40px 20px; max-width: 600px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 26px; margin-bottom: 30px; font-weight: 800; }
+        
+        .card { 
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 25px; border-radius: 15px; margin-bottom: 15px;
+            display: flex; align-items: center; gap: 15px;
+        }
+        .card-icon-red { color: var(--danger); font-weight: bold; }
+        .card-icon-green { color: var(--primary-green); font-weight: bold; }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 10px; margin-bottom: 10px; overflow: hidden;
+        }
+        .faq-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; }
+        .faq-content { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s; color: var(--text-secondary); }
+
+        /* Testimonials */
+        .testimonial { background: var(--card-bg); padding: 25px; border-radius: 15px; margin-bottom: 15px; border: 1px solid var(--border); }
+        .stars { color: #f1c40f; margin-bottom: 10px; }
+
+        /* Checkout Page */
+        #checkout {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark-bg); z-index: 2000; display: none; padding: 20px;
+            overflow-y: auto;
+        }
+        .back-btn { background: var(--card-bg); border: 1px solid var(--border); padding: 8px 15px; border-radius: 20px; color: #fff; cursor: pointer; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; margin-bottom: 5px; font-size: 14px; color: var(--text-secondary); }
+        input { 
+            width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--border);
+            background: #111; color: #fff; font-size: 16px; outline: none;
+        }
+        input:focus { border-color: var(--primary-green); }
+
+        .pix-code-box { 
+            background: #111; border: 1px dashed var(--primary-green); padding: 20px; 
+            margin-top: 20px; border-radius: 12px; display: none;
+        }
+        #pixCode { font-family: monospace; font-size: 11px; word-break: break-all; color: var(--text-secondary); background: #000; padding: 10px; display: block; border-radius: 5px; margin: 10px 0; }
+
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-secondary); }
+
+        @media (max-width: 480px) { h1 { font-size: 28px; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">TráfegoPro</div>
+        <button class="btn-buy-top" onclick="showCheckout()">Comprar Agora</button>
+    </header>
+
+    <section class="hero">
+        <h1>Domine o Tráfego<br>Pago do Zero</h1>
+        <p>Aprenda a vender todos os dias usando anúncios no Facebook, Instagram e Google Ads</p>
+        <button class="btn-main" onclick="showCheckout()">Quero Começar Agora - R$ 12,00</button>
+        <p style="font-size: 12px; margin-top: 15px; color: var(--text-secondary);">🛡️ 7 dias de garantia incondicional</p>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Você Está Passando Por Isso?</h2>
+        <div class="card"><span class="card-icon-red">✘</span> Você está cansado de não conseguir vender na internet?</div>
+        <div class="card"><span class="card-icon-red">✘</span> Já tentou fazer anúncios e só gastou dinheiro sem resultado?</div>
+        <div class="card"><span class="card-icon-red">✘</span> Não sabe por onde começar com tráfego pago?</div>
+    </div>
+
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">A Solução Está Aqui!</h2>
+        <div class="card" style="display: block; border: 1px solid var(--primary-green);">
+            <h3 style="color: var(--primary-green); margin-bottom: 10px;">Módulo Único - Tráfego Pago Completo</h3>
+            <p>Vídeo aula completa + material em texto para você dominar do zero ao avançado.</p>
+        </div>
+        <div class="card"><span class="card-icon-green">✔</span> Saiba exatamente quanto investir e como lucrar</div>
+        <div class="card"><span class="card-icon-green">✔</span> Estratégias testadas e aprovadas para iniciantes</div>
+        <div class="card"><span class="card-icon-green">✔</span> Conquiste sua primeira venda em até 7 dias</div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Veja o Que Nossos Alunos Dizem</h2>
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Fiz minha primeira venda em 3 dias! O curso é direto ao ponto e muito prático."</p>
+            <strong style="display:block; margin-top:10px;">Maria Silva</strong>
+        </div>
+        <div class="testimonial">
+            <div class="stars">★★★★★</div>
+            <p>"Investir R$ 12 foi a melhor decisão. Recuperei o valor 50x."</p>
+            <strong style="display:block; margin-top:10px;">João Paulo</strong>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFaq(this)">Quanto tempo tenho acesso? <span>▼</span></div>
+            <div class="faq-content"><p style="padding-bottom: 20px;">O acesso é vitalício ao curso e a todas as atualizações futuras.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFaq(this)">Preciso ter experiência prévia? <span>▼</span></div>
+            <div class="faq-content"><p style="padding-bottom: 20px;">Não. Ensinamos desde a criação da conta até a escala das vendas.</p></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-header" onclick="toggleFaq(this)">Tem garantia? <span>▼</span></div>
+            <div class="faq-content"><p style="padding-bottom: 20px;">Sim! Se não gostar, devolvemos seu dinheiro em até 7 dias.</p></div>
+        </div>
+    </div>
+
+    <div class="container" style="text-align: center;">
+        <h2 class="section-title">Não Perca Essa Oportunidade!</h2>
+        <button class="btn-main" onclick="showCheckout()">Comprar Agora - R$ 12.00</button>
+    </div>
+
+    <footer>
+        <p style="font-weight: bold; color: #fff; margin-bottom: 5px;">TráfegoPro</p>
+        <p>suportevendas126@gmail.com</p>
+        <p style="margin-top: 20px;">© 2025 TráfegoPro. Todos os direitos reservados.</p>
+    </footer>
+
+    <div id="checkout">
+        <div style="max-width: 500px; margin: 0 auto;">
+            <button class="back-btn" onclick="hideCheckout()">← Voltar</button>
+            <h2 class="section-title" style="text-align: left;">Finalizar Compra</h2>
+            
+            <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" id="nome_cliente" placeholder="Seu nome completo">
+            </div>
+            <div class="form-group">
+                <label>E-mail para receber o acesso</label>
+                <input type="email" id="email_cliente" placeholder="seu@email.com">
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0; background: var(--card-bg); padding: 15px; border-radius: 10px;">
+                <span>Total a pagar:</span>
+                <span style="font-size: 24px; font-weight: bold; color: var(--primary-green);">R$ 12.00</span>
+            </div>
+
+            <button class="btn-main" id="btnGerar" onclick="generatePix()" style="max-width: none;">Gerar QR Code PIX</button>
+
+            <div id="pixContainer" class="pix-code-box">
+                <p style="margin-bottom: 5px; color: var(--primary-green); font-weight: bold;">Copia e Cola gerado:</p>
+                <code id="pixCode">00020126580014br.gov.bcb.pix0136ec0d1fff-1873-423b-a209-8b687c922274520400005303986540512.005802BR5923BRUNO LACERDA GONCALVES6009SAO PAULO62070503***63047C38</code>
+                
+                <button onclick="copyPix()" style="margin-top: 10px; background: #333; color: #fff; border: none; padding: 12px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold;">1. Copiar Código PIX</button>
+                
+                <div style="margin: 25px 0; height: 1px; background: var(--border);"></div>
+                
+                <p style="text-align: center; font-size: 14px; margin-bottom: 15px;">Pague no seu banco e clique abaixo:</p>
+                
+                <button onclick="enviarWhatsapp()" style="background: #25d366; color: #fff; border: none; padding: 18px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-2.32 0-4.591 1.399-4.591 4.082 0 1.152.444 2.256 1.23 3.107l-.542 1.979 2.031-.532c.595.334 1.268.512 1.936.513l.004-.001c2.321 0 4.591-1.4 4.591-4.083s-2.27-4.065-4.559-4.065zm5.267 5.439c-.124.602-.622 1.137-1.155 1.503-.456.313-.997.49-1.554.516l-.136.002c-.521 0-1.013-.131-1.446-.379l-.292-.167-.323.085-.292.077-.161.589-.138.503-.474-.124c-.218-.057-.428-.135-.625-.233l-.225-.114-.15-.084c-.878-.492-1.464-1.284-1.742-2.355l-.014-.055-.054-.234-.05-.224c-.116-.508-.124-1.02-.023-1.517.135-.662.531-1.206 1.089-1.496l.162-.085.176-.08.17-.03c.125-.022.253-.033.38-.033.245 0 .487.042.715.125l.138.051.119.049.096.113.125.147.163.2.146.185.126.166.079.113.04.113.02.115c.012.069.012.138 0 .207l-.015.115-.038.223-.058.219-.068.171-.05.113-.033.056-.164.275-.088.134-.112.158-.09.113-.016.015z"/></svg>
+                    2. Já paguei! Enviar comprovante
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(header) {
+            const content = header.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                header.querySelector('span').innerText = '▼';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                header.querySelector('span').innerText = '▲';
+            }
+        }
+
+        function showCheckout() {
+            document.getElementById('checkout').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            window.scrollTo(0,0);
+        }
+
+        function hideCheckout() {
+            document.getElementById('checkout').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function generatePix() {
+            const nome = document.getElementById('nome_cliente').value;
+            const email = document.getElementById('email_cliente').value;
+            
+            if(!nome || !email) {
+                alert("Por favor, preencha seu nome e e-mail.");
+                return;
+            }
+            
+            document.getElementById('pixContainer').style.display = 'block';
+            document.getElementById('btnGerar').style.display = 'none';
+        }
+
+        function copyPix() {
+            const code = document.getElementById('pixCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert("Código PIX copiado! Agora abra o app do seu banco e pague na opção 'PIX Copia e Cola'.");
+            });
+        }
+
+        function enviarWhatsapp() {
+            const nome = document.getElementById('nome_cliente').value;
+            const email = document.getElementById('email_cliente').value;
+            
+            // Seu número configurado
+            const seuNumero = "5542999728970"; 
+            
+            const mensagem = `Olá! Acabei de fazer o PIX de R$ 12,00 para o TráfegoPro.\n\n` +
+                             `👤 Nome: ${nome}\n` +
+                             `📧 E-mail: ${email}\n\n` +
+                             `Estou enviando o comprovante em anexo para liberar meu acesso!`;
+            
+            const link = `https://api.whatsapp.com/send?phone=${seuNumero}&text=${encodeURIComponent(mensagem)}`;
+            
+            window.open(link, '_blank');
+        }
+    </script>
+</body>
+</html>
